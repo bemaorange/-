@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>임상바이오융합과 1기의 식사 데이트 요청 건</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    font-family:"Malgun Gothic", sans-serif;
+    background:linear-gradient(135deg,#f7f9fc,#eef3ff);
+    min-height:100vh;
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.card{
+    width:100%;
+    max-width:700px;
+    background:white;
+    border-radius:20px;
+    padding:50px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    text-align:center;
+}
+
+.page{
+    display:none;
+}
+
+.active{
+    display:block;
+}
+
+h1{
+    color:#2c3e50;
+    margin-bottom:30px;
+}
+
+p{
+    font-size:20px;
+    line-height:1.8;
+}
+
+.btn{
+    border:none;
+    cursor:pointer;
+    border-radius:12px;
+    margin:10px;
+    transition:0.2s;
+}
+
+.yes1{
+    background:#4CAF50;
+    color:white;
+    font-size:20px;
+    padding:15px 40px;
+}
+
+.yes2{
+    background:#4CAF50;
+    color:white;
+    font-size:24px;
+    padding:18px 50px;
+}
+
+.no{
+    background:#ff5252;
+    color:white;
+    font-size:18px;
+    padding:12px 30px;
+    position:absolute;
+}
+
+.calendar{
+    font-size:28px;
+    line-height:2;
+    margin:30px 0;
+}
+
+.menu-btn{
+    width:260px;
+    background:#5b8cff;
+    color:white;
+    font-size:20px;
+    padding:15px;
+    margin:10px;
+}
+
+.menu-btn:hover{
+    transform:scale(1.05);
+}
+
+.final-message{
+    font-size:28px;
+    line-height:2;
+}
+
+.small{
+    color:gray;
+    font-size:15px;
+    margin-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <!-- PAGE 1 -->
+    <div id="page1" class="page active">
+
+        <h1>🍽️ 임상바이오융합과 1기의 식사 데이트 요청 건</h1>
+
+        <p>
+            교수님,<br>
+            식사 데이트 요청을 수락해 주시겠습니까?
+        </p>
+
+        <button class="btn yes1" onclick="goToPage(2)">
+            YES
+        </button>
+
+        <button class="btn no" id="no1">
+            NO
+        </button>
+
+    </div>
+
+    <!-- PAGE 2 -->
+    <div id="page2" class="page">
+
+        <h1>📅 일정 안내</h1>
+
+        <div class="calendar">
+            2026년 6월 19일 (금)<br>
+            오후 5시 (17:00)
+        </div>
+
+        <p>
+            해당 일정으로 참석 가능하신가요?
+        </p>
+
+        <button class="btn yes2" onclick="goToPage(3)">
+            YES
+        </button>
+
+        <button class="btn no" id="no2">
+            NO
+        </button>
+
+    </div>
+
+    <!-- PAGE 3 -->
+    <div id="page3" class="page">
+
+        <h1>🍴 희망 메뉴 선택</h1>
+
+        <button class="menu-btn" onclick="finish('🥩 고기')">🥩 고기</button><br>
+
+        <button class="menu-btn" onclick="finish('🍣 초밥')">🍣 초밥</button><br>
+
+        <button class="menu-btn" onclick="finish('🍜 중식')">🍜 중식</button><br>
+
+        <button class="menu-btn" onclick="finish('🍝 양식')">🍝 양식</button>
+
+    </div>
+
+    <!-- PAGE 4 -->
+    <div id="page4" class="page">
+
+        <h1>🎉 예약 완료 🎉</h1>
+
+        <div class="final-message">
+            요청에 응해 주셔서 감사합니다.<br><br>
+
+            즐거운 시간 보내요 😊
+        </div>
+
+        <div class="small">
+            * 본 응답은 철회가 불가능할 수 있습니다.
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function goToPage(page){
+
+    document.querySelectorAll(".page").forEach(p=>{
+        p.classList.remove("active");
+    });
+
+    document.getElementById("page"+page).classList.add("active");
+}
+
+function finish(menu){
+
+    document.getElementById("page3").classList.remove("active");
+    document.getElementById("page4").classList.add("active");
+}
+
+function escapeButton(id){
+
+    const btn = document.getElementById(id);
+
+    btn.addEventListener("mouseover",()=>{
+
+        const x = Math.random() * (window.innerWidth - 200);
+        const y = Math.random() * (window.innerHeight - 100);
+
+        btn.style.left = x + "px";
+        btn.style.top = y + "px";
+    });
+
+    btn.addEventListener("click",(e)=>{
+
+        e.preventDefault();
+
+        alert("교수님, 그러시면 안 됩니다 😭");
+
+    });
+
+}
+
+escapeButton("no1");
+escapeButton("no2");
+
+</script>
+
+</body>
+</html>
