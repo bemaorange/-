@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>임상바이오융합과 1기의 식사 데이트 요청 건</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:"Malgun Gothic","맑은 고딕",sans-serif;
+background:linear-gradient(180deg,#FFFDF8 0%,#FAF7FF 50%,#F4F8FF 100%);
+padding:20px;min-height:100vh;display:flex;justify-content:center;align-items:center;
+}
+.card{
+width:100%;max-width:480px;background:white;border-radius:30px;
+padding:35px 25px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.06);
+}
+.page{display:none}.active{display:block}
+.heart{font-size:34px;margin-bottom:15px}
+h1{font-size:28px;line-height:1.5;color:#53627D;margin-bottom:20px}
+p{font-size:17px;line-height:1.9;color:#727C8E}
+.sub{font-size:13px;color:#A3AABA;margin-top:18px}
+.btn-wrap{margin-top:30px;display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
+.btn{border:none;cursor:pointer;border-radius:999px;font-size:18px;font-weight:bold;padding:14px 34px;transition:.2s}
+.btn:hover{transform:translateY(-2px)}
+.yes{background:#DDEAFF;color:#4C6791}
+.no{background:#FFE3EA;color:#B9687C;position:absolute}
+.invite-box{margin:25px 0;padding:25px;background:#FAFBFF;border-radius:20px;border:1px solid #EDF2FF}
+.date{font-size:28px;font-weight:bold;color:#556480}
+.time{margin-top:10px;font-size:20px;color:#71809A}
+.highlight{display:inline-block;margin-top:15px;padding:8px 16px;background:#FFE9EE;color:#D65A75;border-radius:999px;font-weight:bold}
+.menu-btn{width:100%;padding:16px;margin:8px 0;border:none;border-radius:16px;background:#EEF3FF;color:#556C95;font-size:18px;cursor:pointer}
+.final{font-size:24px;line-height:2;color:#556480}
+</style>
+</head>
+<body>
+<div class="card">
+<div id="page1" class="page active">
+<div class="heart">💌</div>
+<h1>임상바이오융합과 1기의<br>식사 데이트 요청 건</h1>
+<p>교수님께<br>정중히 식사 데이트를 요청드립니다.</p>
+<div class="sub">※ 본 요청은 학생들의 간절한 마음을 담아 제작되었습니다.</div>
+<div class="btn-wrap">
+<button class="btn yes" onclick="goToPage(2)">YES</button>
+<button class="btn no" id="no1">NO</button>
+</div>
+</div>
+
+<div id="page2" class="page">
+<div class="heart">📅</div>
+<h1>식사 일정 안내</h1>
+<div class="invite-box">
+<div class="date">2026. 06. 19 (금)</div>
+<div class="time">🕔 오후 5시</div>
+<div class="highlight">⭐ 중요 일정</div>
+</div>
+<p>해당 일정으로 참석 가능하신가요?</p>
+<div class="btn-wrap">
+<button class="btn yes" onclick="goToPage(3)">YES</button>
+<button class="btn no" id="no2">NO</button>
+</div>
+</div>
+
+<div id="page3" class="page">
+<div class="heart">🍽️</div>
+<h1>희망 메뉴 선택</h1>
+<button class="menu-btn" onclick="finish('🥩 고기')">🥩 고기</button>
+<button class="menu-btn" onclick="finish('🍣 초밥')">🍣 초밥</button>
+<button class="menu-btn" onclick="finish('🍜 중식')">🍜 중식</button>
+<button class="menu-btn" onclick="finish('🍝 양식')">🍝 양식</button>
+</div>
+
+<div id="page4" class="page">
+<div class="heart">🎉</div>
+<h1>예약 완료</h1>
+<div class="final">식사 데이트가 성공적으로 등록되었습니다.<br>6월 19일에 뵙겠습니다 😊</div>
+<div class="sub">본 응답은 번복이 어려울 수 있습니다.<br>👨‍🏫 참석 교수님: 1명 추가되었습니다</div>
+</div>
+</div>
+
+<script>
+function goToPage(page){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById('page'+page).classList.add('active');
+}
+function finish(menu){
+alert(menu + "\\n\\n훌륭한 선택입니다.\\n역시 교수님 안목이십니다 😎");
+goToPage(4);
+}
+function escapeButton(id){
+const btn=document.getElementById(id);
+const messages=[
+"교수님, 그러시면 안 됩니다 😭",
+"거절 기능이 비활성화되었습니다 😇",
+"졸업이 걸려 있습니다 🙏",
+"앗! 다시 생각해 주세요 😊",
+"NO 버튼은 현재 점검 중입니다 😆"
+];
+btn.addEventListener("mouseover",()=>{
+const x=Math.random()*(window.innerWidth-180);
+const y=Math.random()*(window.innerHeight-100);
+btn.style.left=x+"px";
+btn.style.top=y+"px";
+});
+btn.addEventListener("click",(e)=>{
+e.preventDefault();
+alert(messages[Math.floor(Math.random()*messages.length)]);
+});
+}
+escapeButton("no1");
+escapeButton("no2");
+</script>
+</body>
+</html>
