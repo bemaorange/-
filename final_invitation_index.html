@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>식사 초대장</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+font-family:"Malgun Gothic","맑은 고딕",sans-serif;
+background:linear-gradient(180deg,#fffdf8,#faf7ff,#f4f8ff);
+min-height:100vh;display:flex;justify-content:center;align-items:center;padding:16px;
+}
+.card{
+width:min(100%,430px);
+background:#fff;border-radius:32px;padding:28px 22px;
+box-shadow:0 20px 50px rgba(0,0,0,.08);
+overflow:hidden;position:relative;text-align:center;
+}
+.page{display:none}.active{display:block}
+.step{margin-bottom:18px;color:#b9aecf;font-weight:bold}
+.step .on{background:#b8a2ea;color:#fff;border-radius:50%;padding:4px 9px}
+.icon{font-size:42px;margin-bottom:10px}
+h1{color:#5d6783;font-size:28px;line-height:1.4;margin-bottom:14px}
+p{color:#778096;line-height:1.8}
+.sub{font-size:12px;color:#adb3c0;margin-top:12px}
+.btnArea{position:relative;height:95px;margin-top:24px}
+.btn{
+border:none;border-radius:999px;padding:14px 24px;
+font-size:17px;font-weight:bold;cursor:pointer;
+}
+.yes{background:#bcd4ff;color:#fff}
+.no{background:#ffc5d4;color:#fff;position:absolute;left:58%;top:0}
+.invite{
+background:#fff;border-radius:24px;padding:24px;
+box-shadow:0 8px 25px rgba(0,0,0,.06);margin:18px 0;
+}
+.date{font-size:38px;color:#9d84e8;font-weight:bold}
+.time{font-size:24px;color:#66728d;margin-top:12px}
+.menu{
+width:90%;max-width:320px;margin:12px auto;padding:18px;
+background:#fff;border:none;border-radius:18px;
+box-shadow:0 6px 18px rgba(0,0,0,.06);
+display:flex;justify-content:space-between;align-items:center;
+font-size:22px;cursor:pointer;
+}
+.heart{color:#ff8aa8}
+.result{font-size:22px;line-height:1.9;color:#5d6783}
+.footer{margin-top:18px;font-size:13px;color:#aab0bc}
+</style>
+</head>
+<body>
+<div class="card">
+
+<div id="p1" class="page active">
+<div class="step"><span class="on">1</span> ─ 2 ─ 3 ─ 4</div>
+<div class="icon">💌</div>
+<h1>식사 초대장</h1>
+<p>임상바이오융합과 1기 학생들이<br>교수님께 드리는 초대장입니다.</p>
+<div class="sub">교수님, 식사 데이트 요청을 수락해 주시겠습니까?</div>
+<div class="btnArea">
+<button class="btn yes" onclick="go('p2')">🤍 네, 좋습니다!</button>
+<button class="btn no" id="no1">💔 아니요...</button>
+</div>
+</div>
+
+<div id="p2" class="page">
+<div class="step">1 ─ <span class="on">2</span> ─ 3 ─ 4</div>
+<div class="icon">📅</div>
+<h1>일정 안내</h1>
+<div class="invite">
+<div>2026년</div>
+<div class="date">06.19 (금)</div>
+<div style="font-size:28px;margin:10px">⭐</div>
+<div class="time">오후 5시 (17:00)</div>
+</div>
+<p>해당 일정으로 참석 가능하신가요?</p>
+<div class="btnArea">
+<button class="btn yes" onclick="go('p3')">🤍 네, 가능합니다!</button>
+<button class="btn no" id="no2">💔 아니요...</button>
+</div>
+</div>
+
+<div id="p3" class="page">
+<div class="step">1 ─ 2 ─ <span class="on">3</span> ─ 4</div>
+<div class="icon">🍽️</div>
+<h1>희망 메뉴 선택</h1>
+<button class="menu" onclick="finish('🥩 고기')"><span>🥩 고기</span><span class="heart">♡</span></button>
+<button class="menu" onclick="finish('🍣 초밥')"><span>🍣 초밥</span><span class="heart">♡</span></button>
+<button class="menu" onclick="finish('🍜 중식')"><span>🍜 중식</span><span class="heart">♡</span></button>
+<button class="menu" onclick="finish('🍝 양식')"><span>🍝 양식</span><span class="heart">♡</span></button>
+</div>
+
+<div id="p4" class="page">
+<div class="step">1 ─ 2 ─ 3 ─ <span class="on">4</span></div>
+<div class="icon">🎉</div>
+<h1>참석 확정!</h1>
+<div class="result" id="result"></div>
+<div class="footer">임상바이오융합과 1기 일동</div>
+</div>
+
+</div>
+
+<script>
+function go(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+function finish(menu){
+document.getElementById('result').innerHTML=
+'식사 데이트가 성공적으로 등록되었습니다.<br><br>선택 메뉴<br><b>'+menu+
+'</b><br><br>2026.06.19 (금)<br>오후 5시<br><br>6월 19일에 뵙겠습니다 😊';
+go('p4');
+}
+function runner(id){
+const btn=document.getElementById(id);
+const msgs=['교수님, 그러시면 안 됩니다 😭','졸업이 걸려 있습니다 🙏','다시 생각해 주세요 😊'];
+btn.addEventListener('mouseenter',move);
+btn.addEventListener('touchstart',move);
+function move(e){
+const parent=btn.parentElement;
+const maxX=Math.max(10,parent.clientWidth-btn.offsetWidth-10);
+const maxY=Math.max(10,parent.clientHeight-btn.offsetHeight-10);
+btn.style.left=(Math.random()*maxX)+'px';
+btn.style.top=(Math.random()*maxY)+'px';
+if(e.type==='touchstart'){alert(msgs[Math.floor(Math.random()*msgs.length)]);}
+}
+}
+runner('no1'); runner('no2');
+</script>
+</body>
+</html>
