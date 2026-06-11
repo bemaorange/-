@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>임상바이오융합과 1기의 식사 데이트 요청 건</title>
 
 <style>
@@ -12,24 +13,38 @@
 }
 
 body{
-    font-family:"Malgun Gothic", sans-serif;
-    background:linear-gradient(135deg,#f7f9fc,#eef3ff);
-    min-height:100vh;
     margin:0;
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:20px;
+    padding:30px;
+
+    font-family:"Malgun Gothic","맑은 고딕",sans-serif;
+
+    background:
+    linear-gradient(
+        135deg,
+        #FFFDF9 0%,
+        #F9F7FF 50%,
+        #F3F8FF 100%
+    );
 }
 
 .card{
     width:100%;
-    max-width:700px;
+    max-width:800px;
+
     background:white;
-    border-radius:20px;
-    padding:50px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+
+    border-radius:30px;
+
+    padding:60px;
+
     text-align:center;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,0.06);
 }
 
 .page{
@@ -41,73 +56,145 @@ body{
 }
 
 h1{
-    color:#2c3e50;
-    margin-bottom:30px;
+    color:#50607C;
+    line-height:1.5;
 }
 
 p{
+    color:#6D7788;
     font-size:20px;
     line-height:1.8;
 }
 
 .btn{
     border:none;
+    border-radius:999px;
     cursor:pointer;
-    border-radius:12px;
+    transition:all .2s ease;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.yes{
+    background:#DDEBFF;
+    color:#4C6793;
+
+    padding:16px 42px;
     margin:10px;
-    transition:0.2s;
-}
 
-.yes1{
-    background:#4CAF50;
-    color:white;
     font-size:20px;
-    padding:15px 40px;
-}
-
-.yes2{
-    background:#4CAF50;
-    color:white;
-    font-size:24px;
-    padding:18px 50px;
+    font-weight:bold;
 }
 
 .no{
-    background:#ff5252;
-    color:white;
-    font-size:18px;
-    padding:12px 30px;
+    background:#FFE4EB;
+    color:#BD647A;
+
+    padding:16px 42px;
+    margin:10px;
+
+    font-size:20px;
+    font-weight:bold;
+
     position:absolute;
 }
 
+.calendar-title{
+    margin-top:20px;
+    color:#5C6986;
+}
+
 .calendar{
-    font-size:28px;
-    line-height:2;
-    margin:30px 0;
+    width:100%;
+    border-collapse:separate;
+    border-spacing:8px;
+    margin-top:20px;
+}
+
+.calendar th{
+    color:#9BA4B5;
+    font-weight:bold;
+}
+
+.calendar td{
+    height:70px;
+
+    background:#F8FAFF;
+
+    border-radius:16px;
+
+    text-align:center;
+
+    color:#667085;
+}
+
+.special{
+    background:#FFE8ED !important;
+
+    color:#D25571 !important;
+
+    font-weight:bold;
+
+    border:2px solid #FFB9C8;
+}
+
+.time-box{
+
+    margin-top:20px;
+
+    font-size:22px;
+
+    color:#52627D;
 }
 
 .menu-btn{
-    width:260px;
-    background:#5b8cff;
-    color:white;
-    font-size:20px;
-    padding:15px;
+
+    width:280px;
+
+    border:none;
+
+    border-radius:18px;
+
+    padding:18px;
+
     margin:10px;
+
+    background:#EEF3FF;
+
+    color:#546C93;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    transition:.2s;
 }
 
 .menu-btn:hover{
-    transform:scale(1.05);
+
+    background:#DCEAFF;
+
+    transform:translateY(-2px);
 }
 
 .final-message{
+
     font-size:28px;
+
     line-height:2;
+
+    color:#4D5B74;
 }
 
 .small{
-    color:gray;
-    font-size:15px;
+
     margin-top:20px;
+
+    color:#9AA3B2;
+
+    font-size:14px;
 }
 
 </style>
@@ -117,81 +204,152 @@ p{
 
 <div class="card">
 
-    <!-- PAGE 1 -->
-    <div id="page1" class="page active">
+<!-- PAGE 1 -->
 
-        <h1>🍽️ 임상바이오융합과 1기의 식사 데이트 요청 건</h1>
+<div id="page1" class="page active">
 
-        <p>
-            교수님,<br>
-            식사 데이트 요청을 수락해 주시겠습니까?
-        </p>
+<h1>
+💌<br>
+임상바이오융합과 1기의<br>
+식사 데이트 요청 건
+</h1>
 
-        <button class="btn yes1" onclick="goToPage(2)">
-            YES
-        </button>
+<p>
+교수님,<br>
+식사 데이트 요청을 수락해 주시겠습니까?
+</p>
 
-        <button class="btn no" id="no1">
-            NO
-        </button>
+<button class="btn yes"
+onclick="goToPage(2)">
+YES
+</button>
 
-    </div>
+<button class="btn no"
+id="no1">
+NO
+</button>
 
-    <!-- PAGE 2 -->
-    <div id="page2" class="page">
+</div>
 
-        <h1>📅 일정 안내</h1>
+<!-- PAGE 2 -->
 
-        <div class="calendar">
-            2026년 6월 19일 (금)<br>
-            오후 5시 (17:00)
-        </div>
+<div id="page2" class="page">
 
-        <p>
-            해당 일정으로 참석 가능하신가요?
-        </p>
+<h1>📅 일정 안내</h1>
 
-        <button class="btn yes2" onclick="goToPage(3)">
-            YES
-        </button>
+<h2 class="calendar-title">
+2026년 6월
+</h2>
 
-        <button class="btn no" id="no2">
-            NO
-        </button>
+<table class="calendar">
 
-    </div>
+<tr>
+<th>일</th>
+<th>월</th>
+<th>화</th>
+<th>수</th>
+<th>목</th>
+<th>금</th>
+<th>토</th>
+</tr>
 
-    <!-- PAGE 3 -->
-    <div id="page3" class="page">
+<tr>
+<td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>
+</tr>
 
-        <h1>🍴 희망 메뉴 선택</h1>
+<tr>
+<td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td>
+</tr>
 
-        <button class="menu-btn" onclick="finish('🥩 고기')">🥩 고기</button><br>
+<tr>
+<td>14</td><td>15</td><td>16</td><td>17</td><td>18</td>
 
-        <button class="menu-btn" onclick="finish('🍣 초밥')">🍣 초밥</button><br>
+<td class="special">
+⭐<br>19
+</td>
 
-        <button class="menu-btn" onclick="finish('🍜 중식')">🍜 중식</button><br>
+<td>20</td>
+</tr>
 
-        <button class="menu-btn" onclick="finish('🍝 양식')">🍝 양식</button>
+<tr>
+<td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td>
+</tr>
 
-    </div>
+<tr>
+<td>28</td><td>29</td><td>30</td><td></td><td></td><td></td><td></td>
+</tr>
 
-    <!-- PAGE 4 -->
-    <div id="page4" class="page">
+</table>
 
-        <h1>🎉 예약 완료 🎉</h1>
+<div class="time-box">
+🕔 오후 5시 (17:00)
+</div>
 
-        <div class="final-message">
-            요청에 응해 주셔서 감사합니다.<br><br>
+<p>
+해당 일정으로 참석 가능하신가요?
+</p>
 
-            즐거운 시간 보내요 😊
-        </div>
+<button class="btn yes"
+onclick="goToPage(3)">
+YES
+</button>
 
-        <div class="small">
-            * 본 응답은 철회가 불가능할 수 있습니다.
-        </div>
+<button class="btn no"
+id="no2">
+NO
+</button>
 
-    </div>
+</div>
+
+<!-- PAGE 3 -->
+
+<div id="page3" class="page">
+
+<h1>🍽️ 희망 메뉴 선택</h1>
+
+<button class="menu-btn"
+onclick="finish('🥩 고기')">
+🥩 고기
+</button><br>
+
+<button class="menu-btn"
+onclick="finish('🍣 초밥')">
+🍣 초밥
+</button><br>
+
+<button class="menu-btn"
+onclick="finish('🍜 중식')">
+🍜 중식
+</button><br>
+
+<button class="menu-btn"
+onclick="finish('🍝 양식')">
+🍝 양식
+</button>
+
+</div>
+
+<!-- PAGE 4 -->
+
+<div id="page4" class="page">
+
+<h1>🎉 예약 완료 🎉</h1>
+
+<div class="final-message">
+
+식사 데이트가 성공적으로 등록되었습니다.<br>
+
+6월 19일에 뵙겠습니다 😊
+
+</div>
+
+<div class="small">
+
+* 본 응답은 번복이 어려울 수 있습니다.
+
+</div>
+
+</div>
 
 </div>
 
@@ -199,39 +357,66 @@ p{
 
 function goToPage(page){
 
-    document.querySelectorAll(".page").forEach(p=>{
-        p.classList.remove("active");
-    });
+document.querySelectorAll('.page')
+.forEach(p=>{
+p.classList.remove('active');
+});
 
-    document.getElementById("page"+page).classList.add("active");
+document.getElementById('page'+page)
+.classList.add('active');
 }
 
 function finish(menu){
 
-    document.getElementById("page3").classList.remove("active");
-    document.getElementById("page4").classList.add("active");
+alert(menu + "\n\n훌륭한 선택입니다. 역시 교수님 안목이십니다 😎");
+
+goToPage(4);
 }
 
 function escapeButton(id){
 
-    const btn = document.getElementById(id);
+const btn = document.getElementById(id);
 
-    btn.addEventListener("mouseover",()=>{
+const messages = [
 
-        const x = Math.random() * (window.innerWidth - 200);
-        const y = Math.random() * (window.innerHeight - 100);
+"교수님, 그러시면 안 됩니다 😭",
 
-        btn.style.left = x + "px";
-        btn.style.top = y + "px";
-    });
+"거절 기능이 비활성화되었습니다 😇",
 
-    btn.addEventListener("click",(e)=>{
+"졸업이 걸려 있습니다 🙏",
 
-        e.preventDefault();
+"다시 생각해보시겠어요? 😊",
 
-        alert("교수님, 그러시면 안 됩니다 😭");
+"앗! 거긴 안 됩니다 😆"
 
-    });
+];
+
+btn.addEventListener("mouseover",()=>{
+
+const x =
+Math.random() *
+(window.innerWidth - 200);
+
+const y =
+Math.random() *
+(window.innerHeight - 120);
+
+btn.style.left = x + "px";
+btn.style.top = y + "px";
+});
+
+btn.addEventListener("click",(e)=>{
+
+e.preventDefault();
+
+const msg =
+messages[
+Math.floor(Math.random()*messages.length)
+];
+
+alert(msg);
+
+});
 
 }
 
